@@ -2,6 +2,7 @@ package com.nnk.springboot;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +18,7 @@ import com.nnk.springboot.repositories.RuleNameRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RuleTests {
+public class RuleNameTests {
 
 	@Autowired
 	private RuleNameRepository ruleNameRepository;

@@ -1,11 +1,13 @@
 package com.nnk.springboot;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ import com.nnk.springboot.repositories.BidListRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class BidTests {
+public class BidListTests {
 
 	@Autowired
 	private BidListRepository bidListRepository;
@@ -29,12 +31,12 @@ public class BidTests {
 		// Save
 		bid = bidListRepository.save(bid);
 		assertNotNull(bid.getBidListId());
-		assertEquals(bid.getBidQuantity(), 10d, 10d);
+		Assert.assertEquals(bid.getBidQuantity(), 10d, 10d);
 
 		// Update
 		bid.setBidQuantity(20d);
 		bid = bidListRepository.save(bid);
-		assertEquals(bid.getBidQuantity(), 20d, 20d);
+		Assert.assertEquals(bid.getBidQuantity(), 20d, 20d);
 
 		// Find
 		List<BidList> listResult = bidListRepository.findAll();

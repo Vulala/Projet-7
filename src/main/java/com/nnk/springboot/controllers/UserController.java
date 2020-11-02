@@ -17,6 +17,7 @@ import com.nnk.springboot.repositories.UserRepository;
 
 @Controller
 public class UserController {
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -27,7 +28,7 @@ public class UserController {
 	}
 
 	@GetMapping("/user/add")
-	public String addUser(User bid) {
+	public String addUser(User user) {
 		return "user/add";
 	}
 
@@ -39,6 +40,7 @@ public class UserController {
 			userRepository.save(user);
 			model.addAttribute("users", userRepository.findAll());
 			return "redirect:/user/list";
+			// TODO: Password validation
 		}
 		return "user/add";
 	}
