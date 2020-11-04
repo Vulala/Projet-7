@@ -1,4 +1,4 @@
-package com.nnk.springboot;
+package com.nnk.springboot.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,20 +13,19 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.repositories.BidListRepository;
 
 @DataJpaTest
-public class BidListTests {
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+public class BidListIT {
 
 	@Autowired
 	private BidListRepository bidListRepository;
-
-	@Autowired
-	private TestEntityManager testEntityManager;
 
 	private BidList bidList;
 
@@ -45,18 +44,13 @@ public class BidListTests {
 	@DisplayName("Find by id : bidList")
 	@Test
 	public void givenGettingABidList_whenFindById_thenItReturnTheRightBidList() {
-		bidList.setBidListId(null); // PersistenceException : can not set an Id
-		BidList persistedEntity = testEntityManager.persist(bidList);
-		Optional<BidList> result = bidListRepository.findById(persistedEntity.getBidListId());
+		Optional<BidList> result = bidListRepository.findById(bidList.getBidListId());
 		assertTrue(result.isPresent());
-		assertEquals(result.get().getAccount(), bidList.getAccount());
 	}
 
 	@DisplayName("Find all : bidList")
 	@Test
 	public void givenGettingAllBidList_whenFindAll_thenItReturnAllTheBidLists() {
-		bidList.setBidListId(null); // PersistenceException : can not set an Id
-		testEntityManager.persist(bidList);
 		List<BidList> listResult = bidListRepository.findAll();
 		assertTrue(listResult.size() > 0);
 	}
@@ -81,10 +75,8 @@ public class BidListTests {
 	@DisplayName("Delete : bidList")
 	@Test
 	public void givenDeletingABidList_whenDelete_thenItDeleteTheBidListInTheDB() {
-		bidList.setBidListId(null); // PersistenceException : can not set an Id
-		BidList persistedEntity = testEntityManager.persist(bidList);
 		bidListRepository.delete(bidList);
-		assertFalse(bidListRepository.findById(persistedEntity.getBidListId()).isPresent());
+		assertFalse(bidListRepository.findById(bidList.getBidListId()).isPresent());
 	}
 
 }

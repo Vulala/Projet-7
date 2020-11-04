@@ -45,9 +45,13 @@ public class BidList {
 	private String sourceListId;
 	private String side;
 
-	public BidList(@NotBlank(message = "Account is mandatory") String account,
+	public BidList() {
+	}
+
+	public BidList(Integer bidListId, @NotBlank(message = "Account is mandatory") String account,
 			@NotBlank(message = "Type is mandatory") String type,
 			@Digits(message = "Must be an integer", fraction = 1, integer = 12) Double bidQuantity) {
+		this.bidListId = bidListId;
 		this.account = account;
 		this.type = type;
 		this.bidQuantity = bidQuantity;

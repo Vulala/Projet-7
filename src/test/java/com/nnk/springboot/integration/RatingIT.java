@@ -1,4 +1,4 @@
-package com.nnk.springboot;
+package com.nnk.springboot.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,20 +13,19 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.repositories.RatingRepository;
 
 @DataJpaTest
-public class RatingTests {
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+public class RatingIT {
 
 	@Autowired
 	private RatingRepository ratingRepository;
-
-	@Autowired
-	private TestEntityManager testEntityManager;
 
 	private Rating rating;
 
@@ -45,18 +44,13 @@ public class RatingTests {
 	@DisplayName("Find by id : rating")
 	@Test
 	public void givenGettingARating_whenFindById_thenItReturnTheRightRating() {
-		rating.setId(null); // PersistenceException : can not set an Id
-		Rating persistedEntity = testEntityManager.persist(rating);
-		Optional<Rating> result = ratingRepository.findById(persistedEntity.getId());
+		Optional<Rating> result = ratingRepository.findById(rating.getId());
 		assertTrue(result.isPresent());
-		assertEquals(result.get().getMoodysRating(), rating.getMoodysRating());
 	}
 
 	@DisplayName("Find all : rating")
 	@Test
 	public void givenGettingAllRating_whenFindAll_thenItReturnAllTheRatings() {
-		rating.setId(null); // PersistenceException : can not set an Id
-		testEntityManager.persist(rating);
 		List<Rating> listResult = ratingRepository.findAll();
 		assertTrue(listResult.size() > 0);
 	}
@@ -81,10 +75,8 @@ public class RatingTests {
 	@DisplayName("Delete : rating")
 	@Test
 	public void givenDeletingARating_whenDelete_thenItDeleteTheRatingInTheDB() {
-		rating.setId(null); // PersistenceException : can not set an Id
-		Rating persistedEntity = testEntityManager.persist(rating);
 		ratingRepository.delete(rating);
-		assertFalse(ratingRepository.findById(persistedEntity.getId()).isPresent());
+		assertFalse(ratingRepository.findById(rating.getId()).isPresent());
 	}
 
 }

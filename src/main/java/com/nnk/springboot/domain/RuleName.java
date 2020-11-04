@@ -27,12 +27,16 @@ public class RuleName {
 	@NotBlank(message = "sqlPart is mandatory")
 	private String sqlPart;
 
-	public RuleName(@NotBlank(message = "Name is mandatory") String name,
+	public RuleName() {
+	}
+
+	public RuleName(Integer id, @NotBlank(message = "Name is mandatory") String name,
 			@NotBlank(message = "Description is mandatory") String description,
 			@NotBlank(message = "json is mandatory") String json,
 			@NotBlank(message = "Template is mandatory") String template,
 			@NotBlank(message = "sqlStr is mandatory") String sqlStr,
 			@NotBlank(message = "sqlPart is mandatory") String sqlPart) {
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.json = json;

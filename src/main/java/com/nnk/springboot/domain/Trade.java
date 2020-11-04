@@ -44,8 +44,12 @@ public class Trade {
 	private String sourceListId;
 	private String side;
 
-	public Trade(@NotBlank(message = "Account is mandatory") String account,
+	public Trade() {
+	}
+
+	public Trade(Integer tradeId, @NotBlank(message = "Account is mandatory") String account,
 			@NotBlank(message = "Type is mandatory") String type) {
+		this.tradeId = tradeId;
 		this.account = account;
 		this.type = type;
 	}

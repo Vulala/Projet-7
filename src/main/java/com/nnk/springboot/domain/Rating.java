@@ -24,10 +24,14 @@ public class Rating {
 	@Digits(message = "Must be an integer", fraction = 1, integer = 12)
 	private Integer orderNumber;
 
-	public Rating(@NotBlank(message = "MoodysRating is mandatory") String moodysRating,
+	public Rating() {
+	}
+
+	public Rating(Integer id, @NotBlank(message = "MoodysRating is mandatory") String moodysRating,
 			@NotBlank(message = "SandPRating is mandatory") String sandPRating,
 			@NotBlank(message = "FitchRating is mandatory") String fitchRating,
 			@Digits(message = "Must be an integer", fraction = 1, integer = 12) Integer orderNumber) {
+		this.id = id;
 		this.moodysRating = moodysRating;
 		this.sandPRating = sandPRating;
 		this.fitchRating = fitchRating;

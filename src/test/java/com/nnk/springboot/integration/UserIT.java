@@ -1,4 +1,4 @@
-package com.nnk.springboot;
+package com.nnk.springboot.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,20 +13,19 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
 
 @DataJpaTest
-public class UserTests {
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+public class UserIT {
 
 	@Autowired
 	private UserRepository userRepository;
-
-	@Autowired
-	private TestEntityManager testEntityManager;
 
 	private User user;
 
@@ -45,18 +44,13 @@ public class UserTests {
 	@DisplayName("Find by id : user")
 	@Test
 	public void givenGettingAnUser_whenFindById_thenItReturnTheRightUser() {
-		user.setId(null); // PersistenceException : can not set an Id
-		User persistedEntity = testEntityManager.persist(user);
-		Optional<User> result = userRepository.findById(persistedEntity.getId());
+		Optional<User> result = userRepository.findById(user.getId());
 		assertTrue(result.isPresent());
-		assertEquals(result.get().getFullname(), user.getFullname());
 	}
 
 	@DisplayName("Find all : user")
 	@Test
 	public void givenGettingAllUser_whenFindAll_thenItReturnAllTheUsers() {
-		user.setId(null); // PersistenceException : can not set an Id
-		testEntityManager.persist(user);
 		List<User> listResult = userRepository.findAll();
 		assertTrue(listResult.size() > 0);
 	}
@@ -81,10 +75,8 @@ public class UserTests {
 	@DisplayName("Delete : user")
 	@Test
 	public void givenDeletingAnUser_whenDelete_thenItDeleteTheUserInTheDB() {
-		user.setId(null); // PersistenceException : can not set an Id
-		User persistedEntity = testEntityManager.persist(user);
 		userRepository.delete(user);
-		assertFalse(userRepository.findById(persistedEntity.getId()).isPresent());
+		assertFalse(userRepository.findById(user.getId()).isPresent());
 	}
 
 }

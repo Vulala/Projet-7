@@ -29,10 +29,14 @@ public class CurvePoint {
 	private Double value;
 	private Timestamp creationDate;
 
-	public CurvePoint(
+	public CurvePoint() {
+	}
+
+	public CurvePoint(Integer id,
 			@NotNull(message = "Must not be null") @Digits(message = "Must be a number", fraction = 1, integer = 12) @Min(message = "Must be atleast 1", value = 1) Integer curveId,
 			@Digits(message = "Must be a number", fraction = 1, integer = 12) Double term,
 			@Digits(message = "Must be a number", fraction = 1, integer = 12) Double value) {
+		this.id = id;
 		this.curveId = curveId;
 		this.term = term;
 		this.value = value;

@@ -1,4 +1,4 @@
-package com.nnk.springboot;
+package com.nnk.springboot.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,20 +13,19 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.repositories.RuleNameRepository;
 
 @DataJpaTest
-public class RuleNameTests {
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+public class RuleNameIT {
 
 	@Autowired
 	private RuleNameRepository ruleNameRepository;
-
-	@Autowired
-	private TestEntityManager testEntityManager;
 
 	private RuleName ruleName;
 
@@ -45,18 +44,13 @@ public class RuleNameTests {
 	@DisplayName("Find by id : ruleName")
 	@Test
 	public void givenGettingARuleName_whenFindById_thenItReturnTheRightRuleName() {
-		ruleName.setId(null); // PersistenceException : can not set an Id
-		RuleName persistedEntity = testEntityManager.persist(ruleName);
-		Optional<RuleName> result = ruleNameRepository.findById(persistedEntity.getId());
+		Optional<RuleName> result = ruleNameRepository.findById(ruleName.getId());
 		assertTrue(result.isPresent());
-		assertEquals(result.get().getName(), ruleName.getName());
 	}
 
 	@DisplayName("Find all : ruleName")
 	@Test
 	public void givenGettingAllRuleName_whenFindAll_thenItReturnAllTheRuleNames() {
-		ruleName.setId(null); // PersistenceException : can not set an Id
-		testEntityManager.persist(ruleName);
 		List<RuleName> listResult = ruleNameRepository.findAll();
 		assertTrue(listResult.size() > 0);
 	}
@@ -81,10 +75,8 @@ public class RuleNameTests {
 	@DisplayName("Delete : ruleName")
 	@Test
 	public void givenDeletingARuleName_whenDelete_thenItDeleteTheRuleNameInTheDB() {
-		ruleName.setId(null); // PersistenceException : can not set an Id
-		RuleName persistedEntity = testEntityManager.persist(ruleName);
 		ruleNameRepository.delete(ruleName);
-		assertFalse(ruleNameRepository.findById(persistedEntity.getId()).isPresent());
+		assertFalse(ruleNameRepository.findById(ruleName.getId()).isPresent());
 	}
 
 }

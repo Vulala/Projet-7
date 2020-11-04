@@ -1,4 +1,4 @@
-package com.nnk.springboot;
+package com.nnk.springboot.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,20 +13,19 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.repositories.CurvePointRepository;
 
 @DataJpaTest
-public class CurvePointTests {
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+public class CurvePointIT {
 
 	@Autowired
 	private CurvePointRepository curvePointRepository;
-
-	@Autowired
-	private TestEntityManager testEntityManager;
 
 	private CurvePoint curvePoint;
 
@@ -45,18 +44,13 @@ public class CurvePointTests {
 	@DisplayName("Find by id : curvePoint")
 	@Test
 	public void givenGettingACurvePoint_whenFindById_thenItReturnTheRightCurvePoint() {
-		curvePoint.setId(null); // PersistenceException : can not set an Id
-		CurvePoint persistedEntity = testEntityManager.persist(curvePoint);
-		Optional<CurvePoint> result = curvePointRepository.findById(persistedEntity.getId());
+		Optional<CurvePoint> result = curvePointRepository.findById(curvePoint.getId());
 		assertTrue(result.isPresent());
-		assertEquals(result.get().getCurveId(), curvePoint.getCurveId());
 	}
 
 	@DisplayName("Find all : curvePoint")
 	@Test
 	public void givenGettingAllCurvePoint_whenFindAll_thenItReturnAllTheCurvePoints() {
-		curvePoint.setId(null); // PersistenceException : can not set an Id
-		testEntityManager.persist(curvePoint);
 		List<CurvePoint> listResult = curvePointRepository.findAll();
 		assertTrue(listResult.size() > 0);
 	}
@@ -81,9 +75,7 @@ public class CurvePointTests {
 	@DisplayName("Delete : curvePoint")
 	@Test
 	public void givenDeletingACurvePoint_whenDelete_thenItDeleteTheCurvePointInTheDB() {
-		curvePoint.setId(null); // PersistenceException : can not set an Id
-		CurvePoint persistedEntity = testEntityManager.persist(curvePoint);
 		curvePointRepository.delete(curvePoint);
-		assertFalse(curvePointRepository.findById(persistedEntity.getId()).isPresent());
+		assertFalse(curvePointRepository.findById(curvePoint.getId()).isPresent());
 	}
 }
