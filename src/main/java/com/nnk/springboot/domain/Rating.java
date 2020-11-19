@@ -18,7 +18,7 @@ public class Rating {
 	@NotBlank(message = "MoodysRating is mandatory")
 	private String moodysRating;
 	@NotBlank(message = "SandPRating is mandatory")
-	private String sandPRating;
+	private String sandRating;
 	@NotBlank(message = "FitchRating is mandatory")
 	private String fitchRating;
 	@Digits(message = "Must be an integer", fraction = 1, integer = 12)
@@ -28,12 +28,12 @@ public class Rating {
 	}
 
 	public Rating(Integer id, @NotBlank(message = "MoodysRating is mandatory") String moodysRating,
-			@NotBlank(message = "SandPRating is mandatory") String sandPRating,
+			@NotBlank(message = "SandRating is mandatory") String sandRating,
 			@NotBlank(message = "FitchRating is mandatory") String fitchRating,
 			@Digits(message = "Must be an integer", fraction = 1, integer = 12) Integer orderNumber) {
 		this.id = id;
 		this.moodysRating = moodysRating;
-		this.sandPRating = sandPRating;
+		this.sandRating = sandRating;
 		this.fitchRating = fitchRating;
 		this.orderNumber = orderNumber;
 	}
@@ -54,12 +54,12 @@ public class Rating {
 		this.moodysRating = moodysRating;
 	}
 
-	public String getSandPRating() {
-		return sandPRating;
+	public String getSandRating() {
+		return sandRating;
 	}
 
-	public void setSandPRating(String sandPRating) {
-		this.sandPRating = sandPRating;
+	public void setSandRating(String sandRating) {
+		this.sandRating = sandRating;
 	}
 
 	public String getFitchRating() {

@@ -32,7 +32,7 @@ public class RatingIT {
 	@DisplayName("Initialize a rating")
 	@BeforeEach
 	public void initialization() {
-		rating = new Rating(1, "Moodys Rating", "Sand PRating", "Fitch Rating", 10);
+		rating = new Rating(1, "Moodys Rating", "Sand Rating", "Fitch Rating", 10);
 	}
 
 	@DisplayName("Injected Components Are Rightly Setup")

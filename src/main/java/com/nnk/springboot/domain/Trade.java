@@ -38,7 +38,7 @@ public class Trade {
 	private String creationName;
 	private Timestamp creationDate;
 	private String revisionName;
-	private Timestamp revionDate;
+	private Timestamp revisionDate;
 	private String dealName;
 	private String dealType;
 	private String sourceListId;
@@ -182,12 +182,12 @@ public class Trade {
 		this.revisionName = revisionName;
 	}
 
-	public Timestamp getRevionDate() {
-		return revionDate;
+	public Timestamp getRevisionDate() {
+		return revisionDate;
 	}
 
-	public void setRevionDate(Timestamp revionDate) {
-		this.revionDate = revionDate;
+	public void setRevisionDate(Timestamp revisionDate) {
+		this.revisionDate = revisionDate;
 	}
 
 	public String getDealName() {

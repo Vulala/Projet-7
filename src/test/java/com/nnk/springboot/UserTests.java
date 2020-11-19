@@ -33,7 +33,7 @@ public class UserTests {
 	@DisplayName("Initialize a user")
 	@BeforeEach
 	public void initialization() {
-		user = new User(1, "Username", "Password", "Fullname", "Role");
+		user = new User(1, "Username", "P@ssword1", "Fullname", "Role");
 	}
 
 	@DisplayName("Injected Components Are Rightly Setup")

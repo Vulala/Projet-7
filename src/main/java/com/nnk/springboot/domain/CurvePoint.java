@@ -12,7 +12,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "curvepoint")
+@Table(name = "curvePoint")
 public class CurvePoint {
 
 	@Id

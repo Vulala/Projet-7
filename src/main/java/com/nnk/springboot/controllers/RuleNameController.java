@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.repositories.RuleNameRepository;
@@ -20,7 +19,7 @@ public class RuleNameController {
 	@Autowired
 	private RuleNameRepository ruleNameRepository;
 
-	@RequestMapping("/ruleName/list")
+	@GetMapping("/ruleName/list")
 	public String home(Model model) {
 		model.addAttribute("ruleName", ruleNameRepository.findAll());
 		return "ruleName/list";

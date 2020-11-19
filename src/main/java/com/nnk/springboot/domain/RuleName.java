@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "rulename")
+@Table(name = "ruleName")
 public class RuleName {
 
 	@Id

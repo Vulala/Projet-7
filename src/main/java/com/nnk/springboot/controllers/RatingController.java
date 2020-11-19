@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.repositories.RatingRepository;
@@ -20,7 +19,7 @@ public class RatingController {
 	@Autowired
 	private RatingRepository ratingRepository;
 
-	@RequestMapping("/rating/list")
+	@GetMapping("/rating/list")
 	public String home(Model model) {
 		model.addAttribute("rating", ratingRepository.findAll());
 		return "rating/list";

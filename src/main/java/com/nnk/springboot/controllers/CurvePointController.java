@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.repositories.CurvePointRepository;
@@ -20,7 +19,7 @@ public class CurvePointController {
 	@Autowired
 	private CurvePointRepository curvePointRepository;
 
-	@RequestMapping("/curvePoint/list")
+	@GetMapping("/curvePoint/list")
 	public String home(Model model) {
 		model.addAttribute("curvePoint", curvePointRepository.findAll());
 		return "curvePoint/list";

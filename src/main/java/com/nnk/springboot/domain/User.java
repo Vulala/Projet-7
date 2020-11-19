@@ -3,6 +3,11 @@ package com.nnk.springboot.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+import com.nnk.springboot.constraint.CharactersConstraint;
+import com.nnk.springboot.constraint.DigitConstraint;
+import com.nnk.springboot.constraint.SpecialCharacterConstraint;
+import com.nnk.springboot.constraint.UppercaseConstraint;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -13,6 +18,10 @@ public class User {
 	@NotBlank(message = "Username is mandatory")
 	private String username;
 	@NotBlank(message = "Password is mandatory")
+	@CharactersConstraint
+	@DigitConstraint
+	@SpecialCharacterConstraint
+	@UppercaseConstraint
 	private String password;
 	@NotBlank(message = "FullName is mandatory")
 	private String fullname;

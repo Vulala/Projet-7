@@ -11,7 +11,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "bidlist")
+@Table(name = "bidList")
 public class BidList {
 
 	@Id

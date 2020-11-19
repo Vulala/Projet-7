@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.repositories.TradeRepository;
@@ -20,7 +19,7 @@ public class TradeController {
 	@Autowired
 	private TradeRepository tradeRepository;
 
-	@RequestMapping("/trade/list")
+	@GetMapping("/trade/list")
 	public String home(Model model) {
 		model.addAttribute("trade", tradeRepository.findAll());
 		return "trade/list";
