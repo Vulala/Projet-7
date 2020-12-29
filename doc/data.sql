@@ -97,6 +97,11 @@ CREATE TABLE users (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE hibernate_sequence (
+    next_val BIGINT
+);
+INSERT INTO hibernate_sequence values ( 2 );
+
 INSERT INTO users (fullname, username, password, role) VALUES ("Administrator", "admin", "$2y$10$LDL.KY2pelrANQVjcqJgR.hOaj5S1mVhWvmOU6yAWZyFU3VSiqqAS", "ADMIN");
 INSERT INTO users (fullname, username, password, role) VALUES ("User", "user", "$2y$10$DqjYY8zmczq1wp2mz5AsSOVnoojUm/M8QggA27ytfLSgB3.6DQJxe", "USER");
 

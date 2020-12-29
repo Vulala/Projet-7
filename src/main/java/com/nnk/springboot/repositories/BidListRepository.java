@@ -1,7 +1,8 @@
 package com.nnk.springboot.repositories;
 
-import com.nnk.springboot.domain.BidList;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.nnk.springboot.domain.BidList;
 
 /**
  * Interface used to define <b>CRUD</b> operations with the bidlist table. <br>

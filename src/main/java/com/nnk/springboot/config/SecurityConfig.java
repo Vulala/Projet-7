@@ -46,6 +46,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.authenticationProvider(authProvider());
 	}
 
+	/**
+	 * Configure the permission required or not to access the differents endpoints.
+	 * <br>
+	 * It also define the template to use as login page. <br>
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
@@ -59,7 +64,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 								.antMatchers("/trade/*").authenticated()
 								.antMatchers("/ruleName/*").authenticated()
 								.and()
-								.formLogin();
+								.formLogin()
+									.loginPage("/login")
+									.permitAll();
 	}
 
 }

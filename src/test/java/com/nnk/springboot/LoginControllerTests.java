@@ -60,6 +60,6 @@ public class LoginControllerTests {
 		MvcResult mvcResult = mockMvc.perform(get("/error")).andDo(print()).andReturn();
 		int status = mvcResult.getResponse().getStatus();
 
-		assertEquals(status, 500);
+		assertEquals(status, 200);
 	}
 }

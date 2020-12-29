@@ -1,10 +1,16 @@
 package com.nnk.springboot.validations;
 
+import static com.nnk.springboot.validations.ValidationResult.MUST_CONTAIN_ATLEAST_EIGHT_CHARACTERS;
+import static com.nnk.springboot.validations.ValidationResult.MUST_CONTAIN_ATLEAST_ONE_DIGIT;
+import static com.nnk.springboot.validations.ValidationResult.MUST_CONTAIN_ATLEAST_ONE_SPECIAL_CHARACTER;
+import static com.nnk.springboot.validations.ValidationResult.MUST_CONTAIN_ATLEAST_ONE_UPPERCASE;
+import static com.nnk.springboot.validations.ValidationResult.SUCCESS;
+
 import java.util.function.Function;
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.nnk.springboot.domain.User;
-import static com.nnk.springboot.validations.ValidationResult.*;
 
 /*
  * {@link @FunctionalInterface} used to proceed the validation of the user's password.

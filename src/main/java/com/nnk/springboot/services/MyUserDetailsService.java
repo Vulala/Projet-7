@@ -26,13 +26,13 @@ public class MyUserDetailsService implements UserDetailsService {
 	private UserRepository userRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) {
 		Optional<User> optionalUser = userRepository.findByUsername(username);
 		if (optionalUser.isPresent()) {
 			return new UserPrincipal(optionalUser.get());
 		}
 
-		throw new UsernameNotFoundException("The user could not be found: " + optionalUser.get().toString());
+		throw new UsernameNotFoundException("The user could not be found: " + username);
 	}
 
 }

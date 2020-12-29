@@ -18,7 +18,7 @@
 			</div>
 			<div class="col-6 text-right">
 				Logged in user: <b th:inline="text"  class="user"> [[${#httpServletRequest.remoteUser}]] </b>
-				<form th:action="@{/app-logout}" method="POST">
+				<form th:action="@{/logout}" method="POST">
 					<input type="submit" value="Logout"/>
 				</form>
 			</div>
@@ -43,10 +43,8 @@
 							<td th:text="${curvePoint.term}"></td>
 							<td style="width: 25%" th:text="${curvePoint.value}"></td>
 							<td style="width: 15%" class="text-center">
-								<a th:href="@{/curvePoint/update/{id}(id=${curvePoint.id})}">
-									<input type="button" value="Edit"/></a>&nbsp;|&nbsp;
-								<a th:href="@{/curvePoint/delete/{id}(id=${curvePoint.id})}">
-									<input type="button" value="Delete"/></a>
+								<a th:href="@{/curvePoint/update/{id}(id=${curvePoint.id})}">Edit</a>&nbsp;|&nbsp;
+								<a th:href="@{/curvePoint/delete/{id}(id=${curvePoint.id})}">Delete</a>
 							</td>
 						</tr>
 				</tbody>
