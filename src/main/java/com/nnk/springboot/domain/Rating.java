@@ -21,7 +21,7 @@ public class Rating {
 	private String sandRating;
 	@NotBlank(message = "FitchRating is mandatory")
 	private String fitchRating;
-	@Digits(message = "Must be an integer", fraction = 1, integer = 12)
+	@Digits(message = "Must be an integer", fraction = 0, integer = 12)
 	private Integer orderNumber;
 
 	public Rating() {
@@ -30,7 +30,7 @@ public class Rating {
 	public Rating(Integer id, @NotBlank(message = "MoodysRating is mandatory") String moodysRating,
 			@NotBlank(message = "SandRating is mandatory") String sandRating,
 			@NotBlank(message = "FitchRating is mandatory") String fitchRating,
-			@Digits(message = "Must be an integer", fraction = 1, integer = 12) Integer orderNumber) {
+			@Digits(message = "Must be an integer", fraction = 0, integer = 12) Integer orderNumber) {
 		this.id = id;
 		this.moodysRating = moodysRating;
 		this.sandRating = sandRating;

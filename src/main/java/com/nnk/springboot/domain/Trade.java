@@ -21,13 +21,13 @@ public class Trade {
 	private String account;
 	@NotBlank(message = "Type is mandatory")
 	private String type;
-	@Digits(message = "Must be an integer", fraction = 1, integer = 12)
+	@Digits(message = "Must be a decimal", fraction = 15, integer = 15)
 	private Double buyQuantity;
-	@Digits(message = "Must be an integer", fraction = 1, integer = 12)
+	@Digits(message = "Must be a decimal", fraction = 15, integer = 15)
 	private Double sellQuantity;
-	@Digits(message = "Must be an integer", fraction = 1, integer = 12)
+	@Digits(message = "Must be a decimal", fraction = 15, integer = 15)
 	private Double buyPrice;
-	@Digits(message = "Must be an integer", fraction = 1, integer = 12)
+	@Digits(message = "Must be a decimal", fraction = 15, integer = 15)
 	private Double sellPrice;
 	private String benchmark;
 	private Timestamp tradeDate;

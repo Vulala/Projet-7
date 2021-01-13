@@ -19,13 +19,12 @@ public class CurvePoint {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	@NotNull(message = "Must not be null")
-	@Digits(message = "Must be a number", fraction = 1, integer = 12)
 	@Min(message = "Must be atleast 1", value = 1)
 	private Integer curveId;
 	private Timestamp asOfDate;
-	@Digits(message = "Must be a number", fraction = 1, integer = 12)
+	@Digits(message = "Must be a decimal", fraction = 15, integer = 15)
 	private Double term;
-	@Digits(message = "Must be a number", fraction = 1, integer = 12)
+	@Digits(message = "Must be a decimal", fraction = 15, integer = 15)
 	private Double value;
 	private Timestamp creationDate;
 
@@ -33,9 +32,9 @@ public class CurvePoint {
 	}
 
 	public CurvePoint(Integer id,
-			@NotNull(message = "Must not be null") @Digits(message = "Must be a number", fraction = 1, integer = 12) @Min(message = "Must be atleast 1", value = 1) Integer curveId,
-			@Digits(message = "Must be a number", fraction = 1, integer = 12) Double term,
-			@Digits(message = "Must be a number", fraction = 1, integer = 12) Double value) {
+			@NotNull(message = "Must not be null") @Min(message = "Must be atleast 1", value = 1) Integer curveId,
+			@Digits(message = "Must be a decimal", fraction = 15, integer = 15) Double term,
+			@Digits(message = "Must be a decimal", fraction = 15, integer = 15) Double value) {
 		this.id = id;
 		this.curveId = curveId;
 		this.term = term;

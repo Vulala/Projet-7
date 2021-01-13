@@ -21,13 +21,13 @@ public class BidList {
 	private String account;
 	@NotBlank(message = "Type is mandatory")
 	private String type;
-	@Digits(message = "Must be an integer", fraction = 1, integer = 12)
+	@Digits(message = "Must be a decimal", fraction = 15, integer = 15)
 	private Double bidQuantity;
-	@Digits(message = "Must be an integer", fraction = 1, integer = 12)
+	@Digits(message = "Must be a decimal", fraction = 15, integer = 15)
 	private Double askQuantity;
-	@Digits(message = "Must be an integer", fraction = 1, integer = 12)
+	@Digits(message = "Must be a decimal", fraction = 15, integer = 15)
 	private Double bid;
-	@Digits(message = "Must be an integer", fraction = 1, integer = 12)
+	@Digits(message = "Must be a decimal", fraction = 15, integer = 15)
 	private Double ask;
 	private String benchmark;
 	private Timestamp bidListDate;
@@ -50,7 +50,7 @@ public class BidList {
 
 	public BidList(Integer bidListId, @NotBlank(message = "Account is mandatory") String account,
 			@NotBlank(message = "Type is mandatory") String type,
-			@Digits(message = "Must be an integer", fraction = 1, integer = 12) Double bidQuantity) {
+			@Digits(message = "Must be a decimal", fraction = 15, integer = 15) Double bidQuantity) {
 		this.bidListId = bidListId;
 		this.account = account;
 		this.type = type;

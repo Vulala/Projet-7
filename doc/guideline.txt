@@ -1,13 +1,15 @@
 # Poseidon Inc.
 ## Technical:
 
-1. Spring boot v2.4.0-RC1
-2. Spring security
-3. Java 8
-4. JUnit 5
-5. H2
-6. Thymeleaf
-7. Bootstrap v.4.3.1
+1. Spring Boot v2.4.0-RC1
+2. Spring Data JPA
+3. Spring Security
+4. Spring AOP
+5. Java 8
+6. JUnit 5
+7. MySQL, H2
+8. Thymeleaf
+9. Bootstrap v.4.3.1
 
 
 ## Setup with Intellij IDE
@@ -16,7 +18,7 @@
 3. Add folders
     - Source root: src/main/java
     - View: src/main/resources
-    - Static: src/main/resource/static
+    - Static: src/main/resources/static
 4. Create database with name "poseidoninc" as configuration in application.properties
 5. Run sql script to create table doc/data.sql
 
@@ -24,7 +26,7 @@
 1. Create mapping domain class and place in package com.nnk.springboot.domain
 2. Create repository class and place in package com.nnk.springboot.repositories
 3. Create controller class and place in package com.nnk.springboot.controllers
-4. Create view files and place in src/main/resource/templates
+4. Create view files and place in src/main/resources/templates
 
 ## Implement a constraint:
 1. Create a constraint following the already-made @interface constraint and place in the same package : com.nnk.springboot.constraint

@@ -6,6 +6,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 /**
@@ -25,6 +26,7 @@ public class LoggingAspect {
 		// Retrieve the details of the intercepted method
 		String className = methodSignature.getDeclaringType().getSimpleName();
 		String methodName = methodSignature.getName();
+		String user = SecurityContextHolder.getContext().getAuthentication().getName();
 
 		Object result = null;
 		try {
@@ -34,7 +36,7 @@ public class LoggingAspect {
 			e.printStackTrace();
 		}
 
-		logger.info("Execution of {} in the {} class.", methodName, className);
+		logger.info("Execution of {} in the {} class by the user : {} .", methodName, className, user);
 
 		return result;
 	}
