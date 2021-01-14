@@ -54,18 +54,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-								.antMatchers("/").permitAll()
-								.antMatchers("/user/list").permitAll()
-								.antMatchers("/admin/home").hasAnyRole("ADMIN")
+								.antMatchers("/").permitAll() // home
+								.antMatchers("/user/list").permitAll() // Needed to create a user
+								.antMatchers("/admin/home").hasAnyRole("ADMIN") // Admin private endpoints
 								.antMatchers("/secure/article-details").hasAnyRole("ADMIN")
-								.antMatchers("/bidList/*").authenticated()
+								.antMatchers("/bidList/*").authenticated() // Main parts of the application, the user must be authenticated
 								.antMatchers("/curvePoint/*").authenticated()
 								.antMatchers("/rating/*").authenticated()
 								.antMatchers("/trade/*").authenticated()
 								.antMatchers("/ruleName/*").authenticated()
 								.and()
 								.formLogin()
-									.loginPage("/login")
+									.loginPage("/login") // Specifies the login URL to send users to
 									.permitAll();
 	}
 
